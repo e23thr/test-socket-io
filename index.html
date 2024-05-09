@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/socket.io-client@4.6.0/dist/socket.io.min.js"></script> -->
+    <title>Document</title>
+    <script src="./build/bundle.js"></script>
+    <script>
+      function onMessage(message) {
+        console.log("message", message);
+      }
+      function onConnect(joinMessage) {
+        console.log("connected");
+        // chatSocket.sendMessage("Hello");
+        
+      }
+      chatSocket.connect({
+        url: "ws://localhost:9000/chats",
+        onReceiveMessage: onMessage,
+        onConnect: onConnect,
+      });
+      chatSocket.sendMessage({
+        type: "message",
+        message: "Hello",
+      });
+    </script>
+  </head>
+  <body>
+    Client
+  </body>
+</html>
